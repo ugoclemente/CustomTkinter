@@ -4,16 +4,17 @@ import tkinterDnD
 customtkinter.set_ctk_parent_class(tkinterDnD.Tk)
 
 customtkinter.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
-customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 app = customtkinter.CTk()
 app.geometry("400x780")
-app.title("CustomTkinter simple_example.py")
+app.title("YouSee")
 
 print(type(app), isinstance(app, tkinterDnD.Tk))
 
 def button_callback():
     print("Button click", combobox_1.get())
+    print("CtkTextbox: ", text_1.get(1.0,1.805))
 
 
 def slider_callback(value):
@@ -70,7 +71,10 @@ segmented_button_1.pack(pady=10, padx=10)
 
 tabview_1 = customtkinter.CTkTabview(master=frame_1, width=300)
 tabview_1.pack(pady=10, padx=10)
-tabview_1.add("CTkTabview")
-tabview_1.add("Tab 2")
+tab_1 = tabview_1.add("CTkTabview")
+tab_2 = tabview_1.add("Tab 2")
+tab_3 = tabview_1.add("Terzo e ultimo")
+label_2 = customtkinter.CTkLabel(master=tab_2, text="Finalmente hai trovato il modo di mettere questo testo in questo spazio. Bravo.", justify="center", width=250, compound="center")
+label_2.grid(row=0, column=0, padx=20, pady=10)
 
 app.mainloop()
