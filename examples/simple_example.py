@@ -1,5 +1,6 @@
-import customtkinter
 import tkinterDnD
+from tkinter import *
+import customtkinter
 
 customtkinter.set_ctk_parent_class(tkinterDnD.Tk)
 
@@ -8,11 +9,20 @@ customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard),
 
 app = customtkinter.CTk()
 app.geometry("400x780")
+# app.attributes('-fullscreen', True)
 app.title("YouSee")
+
+root = tkinterDnD.Tk()
+menubar = Menu(root)
+
+testo = "Ciao a tutti"
 
 print(type(app), isinstance(app, tkinterDnD.Tk))
 
 def button_callback():
+    global testo
+    testo = "cambio testo"
+    label_2.configure(text=testo)
     print("Button click", combobox_1.get())
     print("CtkTextbox: ", text_1.get(1.0,1.805))
 
@@ -22,7 +32,7 @@ def slider_callback(value):
 
 
 frame_1 = customtkinter.CTkFrame(master=app)
-frame_1.pack(pady=20, padx=60, fill="both", expand=True)
+frame_1.pack(pady=20, padx=20, fill="both", expand=True)
 
 label_1 = customtkinter.CTkLabel(master=frame_1, justify=customtkinter.LEFT)
 label_1.pack(pady=10, padx=10)
@@ -74,7 +84,8 @@ tabview_1.pack(pady=10, padx=10)
 tab_1 = tabview_1.add("CTkTabview")
 tab_2 = tabview_1.add("Tab 2")
 tab_3 = tabview_1.add("Terzo e ultimo")
-label_2 = customtkinter.CTkLabel(master=tab_2, text="Finalmente hai trovato il modo di mettere questo testo in questo spazio. Bravo.", justify="center", width=250, compound="center")
+
+label_2 = customtkinter.CTkLabel(master=tab_2, text=testo, justify="center", width=250, compound="center")
 label_2.grid(row=0, column=0, padx=20, pady=10)
 
 app.mainloop()
